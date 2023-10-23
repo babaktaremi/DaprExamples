@@ -1,6 +1,8 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.HttpLogging;
+using ServiceInvocation.Actors.Interfaces.Interfaces;
+using ServiceInvocation.Api.ActorImplementations;
 using ServiceInvocation.Api.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,18 @@ builder.Services.Configure<JsonOptions>(options =>
     options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 });
 
+
+builder.Services.AddActors(options =>
+{
+    options.Actors.RegisterActor<WeatherActor>();
+    options.UseJsonSerialization = true;
+    options.JsonSerializerOptions = new JsonSerializerOptions()
+        { PropertyNameCaseInsensitive = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+    options.ActorIdleTimeout = TimeSpan.FromMinutes(1);
+    options.ActorScanInterval = TimeSpan.FromSeconds(30);
+    options.DrainOngoingCallTimeout = TimeSpan.FromSeconds(30);
+    options.DrainRebalancedActors = true;
+});
 
 var app = builder.Build();
 
@@ -50,6 +64,7 @@ app.MapGet("/weatherforecast", () =>
                 ))
             .ToArray();
         return forecast;
+
     })
     .WithName("GetWeatherForecast")
     .WithOpenApi();
@@ -67,6 +82,13 @@ app.MapPost("/WeatherInfoRequest", (WeatherInfoRequest request, ILogger<Program>
 app.UseCloudEvents();
 app.MapSubscribeHandler();
 app.UseW3CLogging();
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapActorsHandlers();
+});
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceInvocation.Api", "ServiceInvocation.Api\ServiceInvocation.Api.csproj", "{8A9E7E6E-CD17-4328-B709-21FAC74B5BBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceInvocation.UI", "ServiceInvocation.UI\ServiceInvocation.UI.csproj", "{92F4BC87-6B12-481B-AD5A-C71673F1520D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceInvocation.UI", "ServiceInvocation.UI\ServiceInvocation.UI.csproj", "{92F4BC87-6B12-481B-AD5A-C71673F1520D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceInvocation.Actors.Interfaces", "ServiceInvocation.Actors.Interfaces\ServiceInvocation.Actors.Interfaces.csproj", "{394D2824-D367-41ED-8416-3B7220C2905D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{92F4BC87-6B12-481B-AD5A-C71673F1520D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92F4BC87-6B12-481B-AD5A-C71673F1520D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92F4BC87-6B12-481B-AD5A-C71673F1520D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{394D2824-D367-41ED-8416-3B7220C2905D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{394D2824-D367-41ED-8416-3B7220C2905D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{394D2824-D367-41ED-8416-3B7220C2905D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{394D2824-D367-41ED-8416-3B7220C2905D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
